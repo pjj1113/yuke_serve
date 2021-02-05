@@ -1,41 +1,51 @@
-var createError = require('http-errors');
 var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var router = express.Router();
+var utils = require('../utils');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+var db = require('./db') //引入数据库封装模块
+/* GET users listing. */
+router.get('/get', function (req, res, next) {
+  //查询users表
+  var sql = 'select * from user'
+  var sqlArr = []
+  var callBack = (err, data) => {
+    console.log(data)
+    if (err) {
+      console.log('连接错误', err)
+    } else {
+      res.send({
+        list: data,
+      })
+    }
+  }
+  db.sqlConnect(sql, sqlArr, callBack)
+})
+router.post('/add', function(req, res, next) {
+  let id = new Date().valueOf().toString()+parseInt(Math.random()*10000);
+  let date= utils.parseTime(new Date(), '{y}-{m}-{d} {h}:{i}:{s}');
+  let user_name = '',user_mobile= '',user_address='',user_WeChat='';
+  let stop_id = req.body.stop_id;
+  console.log(req.body)
+  req.body.user_name ? user_name = req.body.user_name : '';
+  req.body.user_mobile ? user_mobile = req.body.user_mobile : '';
+  req.body.user_address ? user_address = req.body.user_address : '';
+  req.body.user_WeChat ? user_WeChat = req.body.user_WeChat : '';
+  // INSERT INTO `user` (`user_id`, `stop_id`, `user_name`, `user_mobile`, `user_address`, `user_WeChat`) VALUES ('213213', '321321', '321321', 1232323232, '321321', '321321321321')
+  var sql = `INSERT INTO user (\`user_id\`, \`stop_id\`, \`user_name\`, \`user_mobile\`, \`user_address\`, \`user_WeChat\`,\`date\`) VALUES ('${ id }','${ stop_id }','${ user_name }','${ user_mobile }','${user_address}','${ user_WeChat }','${ date }')`
+  console.log(req.body)
+  var sqlArr = []
+  var callBack = (err, data) => {
+    console.log(data)
+    if (err) {
+      console.log('连接错误', err)
+    } else {
+      res.send({
+        code: 200,
+        message:'添加成功'
+      })
+    }
+  }
+  db.sqlConnect(sql, sqlArr, callBack)
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-module.exports = app;
+module.exports = router;
