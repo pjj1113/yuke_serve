@@ -67,7 +67,7 @@ router.post('/stop/user/update', function (req, res, next) {
   //查询users表
   var stop_name = req.body.stop_name;
   var stop_id = req.body.stop_id;
-  var sql = `UPDATE stopUser SET \`stop_name\`='${ stop_name }' WHERE \`stop_id\`='stop_id';`
+  var sql = `UPDATE stopUser SET \`stop_name\`='${ stop_name }' WHERE \`stop_id\`='${ stop_id }';`
   //查询users表
   console.log(req.body)
   var sqlArr = []

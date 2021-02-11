@@ -45,19 +45,19 @@ router.post('/add', function(req, res, next) {
       //查询users表
       console.log(req.body)
       var sqlArr = []
+      
       var callBack = (err, data) => {
         console.log(data)
         if (err) {
           console.log('连接错误', err)
         } else {
-          db.sqlConnect(sql, sqlArr, callBack)
           res.send({
             code: 200,
             message:'添加成功'
           })
         }
       }
-     
+      db.sqlConnect(sql, sqlArr, callBack)
       // res.send({
       //   code: 200,
       //   message:'领取成功'
