@@ -22,7 +22,7 @@ router.post('/sms', function (req, res, next) {
     userid:'375',
     timestamp: utils.parseTime(new Date(), '{y}{m}{d}{h}{i}{s}'),
     sign: CheckSum,
-    mobile: '15705547960',
+    mobile: user_mobile,
     action: 'send',
     content:  ("【验证码】" + `您的验证码${ code }，该验证码1分钟内有效，请勿泄漏于他人`),
     sendTime:'',
