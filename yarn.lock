@@ -263,6 +263,11 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   resolved "https://registry.npm.taobao.org/crypt/download/crypt-0.0.2.tgz#88d7ff7ec0dfb86f713dc87bbb42d044d3e6c41b"
   integrity sha1-iNf/fsDfuG9xPch7u0LQRNPmxBs=
 
+crypto@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npm.taobao.org/crypto/download/crypto-1.0.1.tgz#2af1b7cad8175d24c8a1b0778255794a21803037"
+  integrity sha1-KvG3ytgXXSTIobB3glV5SiGAMDc=
+
 css-parse@1.0.4:
   version "1.0.4"
   resolved "https://registry.npm.taobao.org/css-parse/download/css-parse-1.0.4.tgz#38b0503fbf9da9f54e9c1dbda60e145c77117bdd"
@@ -646,6 +651,11 @@ longest@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/longest/download/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
   integrity sha1-MKCy2jj3N3DoKUoNIuZiXtd9AJc=
+
+md5-node@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npm.taobao.org/md5-node/download/md5-node-1.0.1.tgz#0e22d009d46bdc95b1d3c5e8c8feddc1a5c3aa88"
+  integrity sha1-DiLQCdRr3JWx08XoyP7dwaXDqog=
 
 media-typer@0.3.0:
   version "0.3.0"
