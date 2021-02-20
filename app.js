@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var IMRouter = require('./routes/IM')
 var wyRouter = require('./routes/wy')
 var repertoryRouter = require('./routes/repertory')
+var typeRouter = require('./routes/type')
 
 var app = express();
 
@@ -26,7 +27,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/im',IMRouter);
 app.use('/wy', wyRouter);
-app.use('/repertory', repertoryRouter)
+app.use('/repertory', repertoryRouter);
+app.use('/type', typeRouter)
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
