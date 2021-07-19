@@ -10,7 +10,7 @@ var IMRouter = require('./routes/IM')
 var wyRouter = require('./routes/wy')
 var repertoryRouter = require('./routes/repertory')
 var typeRouter = require('./routes/type')
-
+var payRouter = require('./routes/yueke/pay')
 var app = express();
 
 // view engine setup
@@ -29,7 +29,7 @@ app.use('/im',IMRouter);
 app.use('/wy', wyRouter);
 app.use('/repertory', repertoryRouter);
 app.use('/type', typeRouter)
-
+app.use('/payRouter', payRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

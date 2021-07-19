@@ -1,11 +1,11 @@
 var mysql = require('mysql');
 module.exports = {
   config: {
-    host: "cdb-1xgcx6w0.cd.tencentcdb.com", //这是数据库的地址
+    host: "rm-bp1p8sz30w86zoq34so.mysql.rds.aliyuncs.com", //这是数据库的地址
     user: "root", //需要用户的名字
-    password: "pjj19951113", //用户密码 ，如果你没有密码，直接双引号就是
-    database: "mySql", //数据库名字
-    port: '10112'
+    password: "Pjj19951113", //用户密码 ，如果你没有密码，直接双引号就是
+    database: "yueke", //数据库名字
+    port: '3306'
   },
   sqlConnect: function(sql, sqlArr, callBack){
     var poll = mysql.createPool(this.config)
