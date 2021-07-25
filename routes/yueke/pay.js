@@ -27,14 +27,14 @@ router.post('/add', function (req, res, next) {
   //查询users表
   let id = new Date().valueOf().toString()+parseInt(Math.random()*10000);
   let stop_open_date= utils.parseTime(new Date(), '{y}-{m}-{d} {h}:{i}:{s}');
-  let name = '', phone= '', address, remark, commodityList
+  let type_id = '', num= '', price, barcode, remark
   console.log(req.body)
-  req.body.name ? name = req.body.name : '';
-  req.body.phone ? phone = req.body.phone : '';
-  req.body.address ? address = req.body.address : '';
+  req.body.type_id ? type_id = req.body.type_id : '';
+  req.body.num ? num = req.body.num : '';
+  req.body.price ? price = req.body.price : '';
   req.body.remark ? remark = req.body.remark : '';
-  req.body.commodityList ? commodityList = req.body.commodityList : '';
-  var sql = `INSERT INTO order_form (\`id\`, \`name\`, \`phone\`, \`address\`, \`remark\`, \`commodityList\`,\`create_date\`) VALUES ('${ id }','${ name }','${ phone }','${ address }','${ remark }','${ commodityList }','${ stop_open_date }')`
+  req.body.barcode ? barcode = req.body.barcode : '';
+  var sql = `INSERT INTO order_form (\`id\`, \`type_id\`, \`num\`, \`price\`, \`remark\`, \`barcode\`,\`create_date\`) VALUES ('${ id }','${ type_id }','${ num }','${ price }','${ remark }','${ barcode }','${ stop_open_date }')`
   console.log(req.body)
   var sqlArr = []
   var callBack = (err, data) => {

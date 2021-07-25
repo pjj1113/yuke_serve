@@ -12,6 +12,7 @@ var repertoryRouter = require('./routes/repertory')
 var typeRouter = require('./routes/type')
 var payRouter = require('./routes/yueke/pay')
 var commodityRouter = require('./routes/yueke/commodity')
+var storeRouter = require('./routes/yueke/store')
 var app = express();
 
 // view engine setup
@@ -32,6 +33,7 @@ app.use('/repertory', repertoryRouter);
 app.use('/type', typeRouter)
 app.use('/pay', payRouter)
 app.use('/commodity', commodityRouter)
+app.use('/store', storeRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
