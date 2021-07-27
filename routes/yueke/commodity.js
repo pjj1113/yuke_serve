@@ -81,4 +81,24 @@ router.post('/type/update', function (req, res, next) {
   }
   db.sqlConnect(sql, sqlArr, callBack)
 })
+// 删除
+router.post('/type/delete', function (req, res, next) {
+  //查询users表
+  let id
+  req.body.id ? id = req.body.id : '';
+  // var sql = 'select * from commodity'
+  var sql = `DELETE FROM commodity_type WHERE \`id\`='${ id }'`
+  var sqlArr = []
+  var callBack = (err, data) => {
+    console.log(data)
+    if (err) {
+      console.log('连接错误', err)
+    } else {
+      res.send({
+        list: data,
+      })
+    }
+  }
+  db.sqlConnect(sql, sqlArr, callBack)
+})
 module.exports = router

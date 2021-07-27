@@ -201,7 +201,7 @@ router.post('/out/delete', function (req, res, next) {
   let id
   req.body.id ? id = req.body.id : '';
   // var sql = 'select * from commodity'
-  var sql = `DELETE FROM store_enter WHERE \`id\`='${ id }'`
+  var sql = `DELETE FROM store_out WHERE \`id\`='${ id }'`
   var sqlArr = []
   var callBack = (err, data) => {
     console.log(data)
