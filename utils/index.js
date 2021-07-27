@@ -37,5 +37,27 @@ module.exports =  {
       return value || 0;
     });
     return time_str;
+  },
+  pagination(tableList,pageSize, currentPage) {
+    if(!pageSize || !currentPage) {
+      return {
+        list: tableList
+      }
+    }
+    if(pageSize*currentPage >= tableList) {
+      return {
+        list: tableList,
+        pageSize: pageSize,
+        currentPage: currentPage,
+        total: tableList.length
+      }
+    } else {
+      return {
+        list: tableList.slice(pageSize*(currentPage-1), pageSize*currentPage),
+        pageSize: pageSize,
+        currentPage: currentPage,
+        total: tableList.length
+      }
+    }
   }
 }

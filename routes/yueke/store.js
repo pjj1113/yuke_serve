@@ -10,13 +10,21 @@ router.get('/enter/getlist', function (req, res, next) {
   var sql = 'select * from store_enter'
   var sqlArr = []
   var callBack = (err, data) => {
-    console.log(data)
+    // console.log(data)
     if (err) {
       console.log('连接错误', err)
     } else {
-      res.send({
-        list: data,
-      })
+      if(req.query.pageSize) {
+        res.send({
+          list: data,
+          ...utils.pagination(data,Number(req.query.pageSize),Number(req.query.currentPage))
+        })
+      } else {
+        res.send({
+          list: data,
+          ...utils.pagination(data)
+        })
+      }
     }
   }
   db.sqlConnect(sql, sqlArr, callBack)
@@ -114,9 +122,17 @@ router.get('/out/getlist', function (req, res, next) {
     if (err) {
       console.log('连接错误', err)
     } else {
-      res.send({
-        list: data,
-      })
+      if(req.query.pageSize) {
+        res.send({
+          list: data,
+          ...utils.pagination(data,Number(req.query.pageSize),Number(req.query.currentPage))
+        })
+      } else {
+        res.send({
+          list: data,
+          ...utils.pagination(data)
+        })
+      }
     }
   }
   db.sqlConnect(sql, sqlArr, callBack)
