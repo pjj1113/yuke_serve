@@ -20,6 +20,26 @@ router.get('/getlist', function (req, res, next) {
   }
   db.sqlConnect(sql, sqlArr, callBack)
 })
+// 查询手机号对应的订单数据
+router.post('/user/list', function (req, res, next) {
+  req.body.phone ? phone = req.body.phone : '';
+  var sql = `SELECT * FROM order_form WHERE phone='${ phone }';`
+  var sqlArr = []
+  var callBack = (err, data) => {
+    if (err) {
+      console.log('连接错误', err)
+      res.send({
+        code: 500,
+        data: err
+      })
+    } else {
+      res.send({
+        list: data,
+      })
+    }
+  }
+  db.sqlConnect(sql, sqlArr, callBack)
+})
 
 // 添加
 router.post('/add', function (req, res, next) {
