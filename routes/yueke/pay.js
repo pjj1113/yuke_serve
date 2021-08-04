@@ -52,6 +52,7 @@ router.post('/add', function (req, res, next) {
   req.body.address ? address = req.body.address : '';
   req.body.remark ? remark = req.body.remark : '';
   req.body.commodityList ? commodityList = req.body.commodityList : '';
+  let start = 0;
   var sql = `INSERT INTO order_form (\`id\`, \`name\`, \`phone\`, \`address\`, \`remark\`, \`commodityList\`,\`create_date\,\`start\`) VALUES ('${ id }','${ name }','${ phone }','${ address }','${ remark }','${ commodityList }','${ stop_open_date }','${ start }')`
   console.log(req.body)
   var sqlArr = []
@@ -98,11 +99,8 @@ router.post('/update', function (req, res, next) {
 router.post('/update/start', function (req, res, next) {
   //查询users表  let name = '', phone= '', address, remark, commodityList,price
   var id = req.body.id;
-  var phone = req.body.phone;
-  var address = req.body.address;
-  var commodityList = req.body.commodityList;
-  var remark = req.body.remark;
-  var sql = `UPDATE order_form SET \`name\`='${ name }',\`phone\`='${ phone }',\`address\`='${ address }',\`commodityList\`='${ commodityList }',\`remark\`='${ remark }' WHERE \`id\`='${ id }';`
+  var start = req.body.start;
+  var sql = `UPDATE order_form SET \`start\`='${ start }' WHERE \`id\`='${ id }';`
   //查询users表
   console.log(req.body)
   var sqlArr = []
@@ -114,6 +112,27 @@ router.post('/update/start', function (req, res, next) {
       res.send({
         code: 200,
         message:'修改成功'
+      })
+    }
+  }
+  db.sqlConnect(sql, sqlArr, callBack)
+})
+
+// 删除
+router.post('/delete', function (req, res, next) {
+  //查询users表
+  let id
+  req.body.id ? id = req.body.id : '';
+  // var sql = 'select * from commodity'
+  var sql = `DELETE FROM order_form WHERE \`id\`='${ id }'`
+  var sqlArr = []
+  var callBack = (err, data) => {
+    console.log(data)
+    if (err) {
+      console.log('连接错误', err)
+    } else {
+      res.send({
+        list: data,
       })
     }
   }

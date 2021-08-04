@@ -14,10 +14,10 @@ router.get('/enter/getlist', function (req, res, next) {
     if (err) {
       console.log('连接错误', err)
     } else {
-      if(req.query.pageSize) {
+      if(req.query) {
         res.send({
           list: data,
-          ...utils.pagination(data,Number(req.query.pageSize),Number(req.query.currentPage))
+          ...utils.pagination(data,req.query)
         })
       } else {
         res.send({
@@ -35,7 +35,7 @@ router.post('/enter/add', function (req, res, next) {
   //查询users表
   let id = new Date().valueOf().toString()+parseInt(Math.random()*10000);
   let stop_open_date= utils.parseTime(new Date(), '{y}-{m}-{d} {h}:{i}:{s}');
-  let type_id = '', num, price, remark, barcode;
+  let type_id = '', num = '', price = '', remark = '', barcode = '';
 
   req.body.type_id ? type_id = req.body.type_id : '';
   req.body.num ? num = req.body.num : '';
@@ -122,10 +122,10 @@ router.get('/out/getlist', function (req, res, next) {
     if (err) {
       console.log('连接错误', err)
     } else {
-      if(req.query.pageSize) {
+      if(req.query) {
         res.send({
           list: data,
-          ...utils.pagination(data,Number(req.query.pageSize),Number(req.query.currentPage))
+          ...utils.pagination(data,req.query)
         })
       } else {
         res.send({

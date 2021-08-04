@@ -38,7 +38,19 @@ module.exports =  {
     });
     return time_str;
   },
-  pagination(tableList,pageSize, currentPage) {
+  pagination(data, sreach) {
+    let pageSize = sreach.pageSize ? Number(sreach.pageSize) : null;
+    let currentPage = sreach.currentPage ? Number(sreach.currentPage) : null;
+    let startDate = sreach.startDate ? sreach.startDate : null;
+    let endDate = sreach.endDate ? sreach.endDate : null;
+    let tableList = data
+    if(startDate && endDate) {
+      tableList = data.filter(item => 
+        this.parseTime(item.create_date, '{y}-{m}-{d}') >= this.parseTime(startDate, '{y}-{m}-{d}') &&
+        this.parseTime(item.create_date, '{y}-{m}-{d}') <= this.parseTime(endDate, '{y}-{m}-{d}') 
+      )
+    }
+    
     if(!pageSize || !currentPage) {
       return {
         list: tableList
