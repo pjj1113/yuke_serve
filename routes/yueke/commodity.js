@@ -27,15 +27,13 @@ router.post('/type/add', function (req, res, next) {
   //查询users表
   let id = new Date().valueOf().toString()+parseInt(Math.random()*10000);
   let stop_open_date= utils.parseTime(new Date(), '{y}-{m}-{d} {h}:{i}:{s}');
-  let name = '', model, barcode, creatr_date, imgList, remark, price;
-  console.log(req.body)
-  req.body.name ? name = req.body.name : '';
-  req.body.model ? model = req.body.model : '';
-  req.body.barcode ? barcode = req.body.barcode : '';
-  req.body.creatrDate ? creatr_date = req.body.creatrDate : '';
-  req.body.imgList ? imgList = req.body.imgList : '';
-  req.body.remark ? remark = req.body.remark : '';
-  req.body.price ? price = req.body.price : '';
+  let name = '', model, barcode, creatr_date, imgList, remark, price = '';
+  name = req.body.name ?  req.body.name : '';
+  model = req.body.model ? req.body.model : '';
+  barcode = req.body.barcode ? req.body.barcode : '';
+  imgList = req.body.imgList ? req.body.imgList : '';
+  remark = req.body.remark ? req.body.remark : '';
+  price = req.body.price ? req.body.price : '';
   var sql = `INSERT INTO commodity_type (\`id\`, \`name\`,\`model\`,\`barcode\`,\`creatr_date\`,\`imgList\`,\`remark\`,\`price\`) VALUES ('${ id }','${ name }','${ model }','${ barcode }','${ stop_open_date }','${ imgList }','${ remark }','${ price }')`
   var sqlArr = []
   var callBack = (err, data) => {

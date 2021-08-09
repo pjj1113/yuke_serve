@@ -47,13 +47,13 @@ router.post('/add', function (req, res, next) {
   let id = new Date().valueOf().toString()+parseInt(Math.random()*10000);
   let stop_open_date= utils.parseTime(new Date(), '{y}-{m}-{d} {h}:{i}:{s}');
   let name = '', phone= '', address, remark, commodityList,price
-  req.body.name ? name = req.body.name : '';
-  req.body.phone ? phone = req.body.phone : '';
-  req.body.address ? address = req.body.address : '';
-  req.body.remark ? remark = req.body.remark : '';
-  req.body.commodityList ? commodityList = req.body.commodityList : '';
+  name = req.body.name ?  req.body.name : '';
+  phone = req.body.phone ?  req.body.phone : '';
+  address = req.body.address ?  req.body.address : '';
+  remark = req.body.remark ?  req.body.remark : '';
+  commodityList = req.body.commodityList ? req.body.commodityList : '';
   let start = 0;
-  var sql = `INSERT INTO order_form (\`id\`, \`name\`, \`phone\`, \`address\`, \`remark\`, \`commodityList\`,\`create_date\,\`start\`) VALUES ('${ id }','${ name }','${ phone }','${ address }','${ remark }','${ commodityList }','${ stop_open_date }','${ start }')`
+  var sql = `INSERT INTO order_form (\`id\`, \`name\`, \`phone\`, \`address\`, \`remark\`, \`commodityList\`,\`create_date\`,\`start\`) VALUES ('${ id }','${ name }','${ phone }','${ address }','${ remark }','${ commodityList }','${ stop_open_date }','${ start }')`
   console.log(req.body)
   var sqlArr = []
   var callBack = (err, data) => {
