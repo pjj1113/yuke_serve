@@ -29,12 +29,12 @@ router.post('/add', function (req, res, next) {
   //查询users表
   let id = new Date().valueOf().toString()+parseInt(Math.random()*10000);
   let stop_open_date= utils.parseTime(new Date(), '{y}-{m}-{d} {h}:{i}:{s}');
-  let name = '', phone= '', addres = '', remark = ''
+  let name = '', phone= '', address = '', remark = ''
   req.body.name ? name = req.body.name : '';
   req.body.phone ? phone = req.body.phone : '';
-  req.body.addres ? addres = req.body.addres : '';
+  req.body.address ? address = req.body.address : '';
   req.body.remark ? remark = req.body.remark : '';
-  var sql = `INSERT INTO user (\`id\`, \`name\`, \`phone\`, \`addres\`, \`remark\`,\`create_date\`) VALUES ('${ id }','${ name }','${ phone }','${ addres }','${ remark }','${ stop_open_date }')`
+  var sql = `INSERT INTO user (\`id\`, \`name\`, \`phone\`, \`address\`, \`remark\`,\`create_date\`) VALUES ('${ id }','${ name }','${ phone }','${ address }','${ remark }','${ stop_open_date }')`
   console.log(req.body)
   var sqlArr = []
   var callBack = (err, data) => {
@@ -56,9 +56,9 @@ router.post('/update', function (req, res, next) {
   //查询users表  let name = '', phone= '', address, remark, commodityList,price
   var id = req.body.id;
   var name = req.body.name;
-  var addres = req.body.addres;
+  var address = req.body.address;
   var remark = req.body.remark;
-  var sql = `UPDATE user SET \`name\`='${ name }',\`addres\`='${ addres }' WHERE \`id\`='${ id }';`
+  var sql = `UPDATE user SET \`name\`='${ name }',\`address\`='${ address }' WHERE \`id\`='${ id }';`
   //查询users表
   console.log(req.body)
   var sqlArr = []
